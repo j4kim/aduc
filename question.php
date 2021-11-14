@@ -49,6 +49,7 @@ $data = json_decode($content);
           </td>
           <td>
             <input type="text" placeholder="Votre réponse" name="reply">
+            <input type="hidden" name="question_id" value="<?= $data->question_id ?>">
             <button id="send-btn" type="submit">Envoyer</button>
           </td>
         </tr>
