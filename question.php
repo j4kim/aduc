@@ -58,8 +58,8 @@ $data = json_decode($content);
   <script>
     var form = document.querySelector('form')
     form.addEventListener("submit", function(e){
-      if (!this.name.value && !this.reply.value) {
-        alert("Merci de remplir votre nom et votre réponse")
+      if (!(this.name.value && this.reply.value)) {
+        alert("Veuillez remplir votre nom et votre réponse")
         e.preventDefault()
       }
     });
