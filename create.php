@@ -1,18 +1,18 @@
 <?php
 
-$id = uniqid();
+require('init.php');
 
-$time = time();
+$id = uniqid();
 
 $data = [
   'question' => $_POST['question'],
-  'user_id' => $_COOKIE['user_id'],
+  'user_id' => $user_id,
   'question_id' => $id,
   'created_at' => $time,
   'updated_at' => $time,
   'replies' => []
 ];
 
-file_put_contents("./database/$id.json", json_encode($data, JSON_PRETTY_PRINT));
+setData($id, $data);
 
 header("Location: question.php?id=$id");

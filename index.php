@@ -1,11 +1,6 @@
 <?php
 
-$user_id = @$_COOKIE["user_id"];
-
-if (!$user_id) {
-  $user_id = uniqid();
-  setcookie("user_id", $user_id, time()+60*60*24*365);
-}
+require('init.php');
 
 ?>
 

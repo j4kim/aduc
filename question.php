@@ -1,13 +1,8 @@
 <?php
 
-$id = $_GET["id"];
-$content = @file_get_contents("database/$id.json");
+require('init.php');
 
-if (!($id && $content)) {
-  header('Location: /');
-}
-
-$data = json_decode($content);
+$data = getData($_GET["id"]);
 
 ?>
 
