@@ -45,7 +45,12 @@ $data = json_decode($content);
         <?php } ?>
         <tr>
           <td>
-            <input type="text" placeholder="Votre nom" name="name">
+            <input
+              type="text"
+              placeholder="Votre nom"
+              name="name"
+              value="<?= @$_COOKIE['user_name'] ?>"
+            >
           </td>
           <td>
             <input type="text" placeholder="Votre réponse" name="reply">
