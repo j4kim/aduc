@@ -37,12 +37,6 @@ $data = json_decode($content);
         </tr>
       </thead>
       <tbody>
-        <?php foreach ($data->replies as $reply) { ?>
-          <tr>
-            <td><?= $reply->name ?></td>
-            <td><?= $reply->reply ?></td>
-          </tr>
-        <?php } ?>
         <tr>
           <td>
             <input
@@ -58,6 +52,12 @@ $data = json_decode($content);
             <button id="send-btn" type="submit">Envoyer</button>
           </td>
         </tr>
+        <?php foreach ($data->replies as $reply) { ?>
+          <tr>
+            <td><?= $reply->name ?></td>
+            <td><?= $reply->reply ?></td>
+          </tr>
+        <?php } ?>
       </tbody>
     </table>
   </form>
