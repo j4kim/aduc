@@ -7,6 +7,7 @@ $data = [
   'user_id' => $_COOKIE['user_id'],
   'question_id' => $id,
   'time' => time(),
+  'replies' => []
 ];
 
 file_put_contents("./database/$id.json", json_encode($data, JSON_PRETTY_PRINT));
