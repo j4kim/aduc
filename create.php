@@ -2,11 +2,14 @@
 
 $id = uniqid();
 
+$time = time();
+
 $data = [
   'question' => $_POST['question'],
   'user_id' => $_COOKIE['user_id'],
   'question_id' => $id,
-  'time' => time(),
+  'created_at' => $time,
+  'updated_at' => $time,
   'replies' => []
 ];
 

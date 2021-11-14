@@ -12,6 +12,8 @@ $data->replies[] = [
   'user_id' => $_COOKIE["user_id"]
 ];
 
+$data->updated_at = time();
+
 file_put_contents("./database/$id.json", json_encode($data, JSON_PRETTY_PRINT));
 
 header("Location: question.php?id=$id");
