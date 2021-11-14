@@ -2,9 +2,7 @@
 
 require('init.php');
 
-$id = $_POST['question_id'];
-$content = @file_get_contents("database/$id.json");
-$data = json_decode($content);
+$data = getData($_POST['question_id']);
 
 setcookie("user_name", $_POST['name'], time()+60*60*24*365);
 
@@ -17,6 +15,6 @@ $data->replies[] = [
 
 $data->updated_at = $time;
 
-file_put_contents("./database/$id.json", json_encode($data, JSON_PRETTY_PRINT));
+setData($id, $data);
 
 header("Location: question.php?id=$id");
