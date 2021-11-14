@@ -2,7 +2,7 @@
 
 require('init.php');
 
-$id = uniqid();
+$id = id();
 
 $data = [
   'question' => $_POST['question'],
