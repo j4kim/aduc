@@ -25,6 +25,7 @@ foreach($data->replies as $reply) {
 </head>
 <body>
   <form action="reply.php" method="post">
+    <input type="hidden" name="question_id" value="<?= $data->question_id ?>">
     <?= $hasAlreadyReplied ? 'Vous avez déjà répondu' : '' ?>
     <table>
       <thead>
@@ -54,7 +55,6 @@ foreach($data->replies as $reply) {
             </td>
             <td>
               <input type="text" placeholder="Votre réponse" name="reply">
-              <input type="hidden" name="question_id" value="<?= $data->question_id ?>">
               <button id="send-btn" type="submit">Envoyer</button>
             </td>
           </tr>
@@ -62,7 +62,14 @@ foreach($data->replies as $reply) {
         <?php foreach ($data->replies as $reply) { ?>
           <tr>
             <td><?= $reply->name ?></td>
-            <td><?= $reply->reply ?></td>
+            <td>
+              <?= $reply->reply ?>
+              <?php if ($reply->user_id === $user_id) { ?>
+                <button type="submit" name="delete" value="<?= $reply->created_at ?>">
+                  x
+                </button>
+              <?php } ?>
+            </td>
           </tr>
         <?php } ?>
       </tbody>
@@ -71,7 +78,9 @@ foreach($data->replies as $reply) {
   <script>
     var form = document.querySelector('form')
     form.addEventListener("submit", function(e){
-      if (!(this.name.value && this.reply.value)) {
+      var deleting = this.delete && this.delete.value
+      var inserting = this.name.value && this.reply.value
+      if (!(deleting || inserting)) {
         alert("Veuillez remplir votre nom et votre réponse")
         e.preventDefault()
       }
