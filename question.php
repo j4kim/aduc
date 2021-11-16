@@ -23,6 +23,16 @@ foreach($data->replies as $reply) {
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title><?= $data->question ?></title>
   <link rel="stylesheet" href="https://unpkg.com/@picocss/pico@latest/css/pico.min.css">
+  <style>
+    table input, table button {
+      margin-bottom: 0 !important;
+    }
+    table button[name=delete] {
+      width: auto;
+      padding-top: 2px;
+      padding-bottom: 4px;
+    }
+  </style>
 </head>
 <body>
 <main class="container">
@@ -39,7 +49,7 @@ foreach($data->replies as $reply) {
                 count($data->replies) . " participant"
             ?>
           </th>
-          <th>
+          <th colspan="2">
             <?= $data->question ?>
           </th>
         </tr>
@@ -57,6 +67,8 @@ foreach($data->replies as $reply) {
             </td>
             <td>
               <input type="text" placeholder="Votre réponse" name="reply">
+            </td>
+            <td>
               <button id="send-btn" type="submit">Envoyer</button>
             </td>
           </tr>
@@ -66,8 +78,15 @@ foreach($data->replies as $reply) {
             <td><?= $reply->name ?></td>
             <td>
               <?= $reply->reply ?>
+            </td>
+            <td>
               <?php if ($reply->user_id === $user_id) { ?>
-                <button type="submit" name="delete" value="<?= $reply->created_at ?>">
+                <button
+                  class="secondary outline"
+                  type="submit"
+                  name="delete"
+                  value="<?= $reply->created_at ?>"
+                >
                   x
                 </button>
               <?php } ?>
