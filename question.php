@@ -4,6 +4,15 @@ require('init.php');
 
 $data = getData($_GET["id"]);
 
+$hasAlreadyReplied = false;
+
+foreach($data->replies as $reply) {
+  if ($reply->user_id === $user_id) {
+    $hasAlreadyReplied = true;
+    break;
+  }
+}
+
 ?>
 
 <!DOCTYPE html>
@@ -16,6 +25,7 @@ $data = getData($_GET["id"]);
 </head>
 <body>
   <form action="reply.php" method="post">
+    <?= $hasAlreadyReplied ? 'Vous avez déjà répondu' : '' ?>
     <table>
       <thead>
         <tr>
@@ -32,21 +42,23 @@ $data = getData($_GET["id"]);
         </tr>
       </thead>
       <tbody>
-        <tr>
-          <td>
-            <input
-              type="text"
-              placeholder="Votre nom"
-              name="name"
-              value="<?= @$_COOKIE['user_name'] ?>"
-            >
-          </td>
-          <td>
-            <input type="text" placeholder="Votre réponse" name="reply">
-            <input type="hidden" name="question_id" value="<?= $data->question_id ?>">
-            <button id="send-btn" type="submit">Envoyer</button>
-          </td>
-        </tr>
+        <?php if (!$hasAlreadyReplied) { ?>
+          <tr>
+            <td>
+              <input
+                type="text"
+                placeholder="Votre nom"
+                name="name"
+                value="<?= @$_COOKIE['user_name'] ?>"
+              >
+            </td>
+            <td>
+              <input type="text" placeholder="Votre réponse" name="reply">
+              <input type="hidden" name="question_id" value="<?= $data->question_id ?>">
+              <button id="send-btn" type="submit">Envoyer</button>
+            </td>
+          </tr>
+        <?php } ?>
         <?php foreach ($data->replies as $reply) { ?>
           <tr>
             <td><?= $reply->name ?></td>
