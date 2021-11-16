@@ -10,7 +10,7 @@ function setData($id, $data) {
 }
 
 function id() {
-  return bin2hex(random_bytes(18));
+  return bin2hex(random_bytes(9));
 }
 
 $time = time();
