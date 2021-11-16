@@ -2,7 +2,9 @@
 
 require('init.php');
 
-$data = getData($_POST['question_id']);
+$id = $_POST['question_id'];
+
+$data = getData($id);
 
 setcookie("user_name", $_POST['name'], time()+60*60*24*365);
 
