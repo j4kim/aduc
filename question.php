@@ -22,8 +22,10 @@ foreach($data->replies as $reply) {
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title><?= $data->question ?></title>
+  <link rel="stylesheet" href="https://unpkg.com/@picocss/pico@latest/css/pico.min.css">
 </head>
 <body>
+<main class="container">
   <form action="reply.php" method="post">
     <input type="hidden" name="question_id" value="<?= $data->question_id ?>">
     <?= $hasAlreadyReplied ? 'Vous avez déjà répondu' : '' ?>
@@ -86,5 +88,6 @@ foreach($data->replies as $reply) {
       }
     });
   </script>
+</main>
 </body>
 </html>
