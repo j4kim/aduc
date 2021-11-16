@@ -38,7 +38,7 @@ foreach($data->replies as $reply) {
 <main class="container">
   <form action="reply.php" method="post">
     <input type="hidden" name="question_id" value="<?= $data->question_id ?>">
-    <?= $hasAlreadyReplied ? 'Vous avez déjà répondu' : '' ?>
+    <?= $hasAlreadyReplied ? '<small>Vous avez déjà répondu</small>' : '' ?>
     <table>
       <thead>
         <tr>
