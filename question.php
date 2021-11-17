@@ -13,6 +13,8 @@ foreach($data->replies as $reply) {
   }
 }
 
+$repliesCount = count($data->replies);
+
 ?>
 
 <!DOCTYPE html>
@@ -43,11 +45,7 @@ foreach($data->replies as $reply) {
       <thead>
         <tr>
           <th>
-            <?=
-              count($data->replies) > 1 ?
-                count($data->replies) . " participants" :
-                count($data->replies) . " participant"
-            ?>
+            <?= $repliesCount . " participant" . ($repliesCount > 1 ? 's' : '') ?>
           </th>
           <th colspan="2">
             <?= $data->question ?>
