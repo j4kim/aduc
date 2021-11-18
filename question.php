@@ -34,6 +34,35 @@ $repliesCount = count($data->replies);
       padding-top: 2px;
       padding-bottom: 4px;
     }
+    input {
+      min-width: 100px;
+    }
+    td.reply-cell {
+      display: flex;
+      align-items: center;
+    }
+    td.reply-cell .reply {
+      flex-grow: 1;
+    }
+    td.reply-cell .action {
+      width: auto;
+    }
+    td.reply-cell input.reply {
+      border-top-right-radius: 0;
+      border-bottom-right-radius: 0;
+    }
+    td.reply-cell button.action#send-btn {
+      border-top-left-radius: 0;
+      border-bottom-left-radius: 0;
+    }
+    @media screen and (max-width: 420px) {
+      :root {
+        --spacing: 0.5rem;
+        --font-size: 14px;
+        --form-element-spacing-vertical: 0.5rem;
+        --form-element-spacing-horizontal: 0.7rem;
+      }
+    }
   </style>
 </head>
 <body>
@@ -47,7 +76,7 @@ $repliesCount = count($data->replies);
           <th>
             <?= $repliesCount . " participant" . ($repliesCount > 1 ? 's' : '') ?>
           </th>
-          <th colspan="2">
+          <th>
             <?= $data->question ?>
           </th>
         </tr>
@@ -63,24 +92,22 @@ $repliesCount = count($data->replies);
                 value="<?= @$_COOKIE['user_name'] ?>"
               >
             </td>
-            <td>
-              <input type="text" placeholder="Votre réponse" name="reply">
-            </td>
-            <td>
-              <button id="send-btn" type="submit">Envoyer</button>
+            <td class="reply-cell">
+              <input class="reply" type="text" placeholder="Votre réponse" name="reply">
+              <button class="action" id="send-btn" type="submit">Envoyer</button>
             </td>
           </tr>
         <?php } ?>
         <?php foreach ($data->replies as $reply) { ?>
           <tr>
             <td><?= $reply->name ?></td>
-            <td>
-              <?= $reply->reply ?>
-            </td>
-            <td>
+            <td class="reply-cell">
+              <div class="reply">
+                <?= $reply->reply ?>
+              </div>
               <?php if ($reply->user_id === $user_id) { ?>
                 <button
-                  class="secondary outline"
+                  class="action secondary outline"
                   type="submit"
                   name="delete"
                   value="<?= $reply->created_at ?>"
