@@ -1,5 +1,5 @@
 <script>
-	import { Router, Link, Route } from "svelte-navigator"
+	import { Router, Link, Route } from "svelte-routing"
 </script>
 
 <Router>
