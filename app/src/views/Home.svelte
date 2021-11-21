@@ -1,8 +1,10 @@
 <script>
+  import { API_URL } from '../env.js'
+
   let question = '';
 
   function handleSubmit(e) {
-    fetch('http://localhost:1234/create.php', {
+    fetch(`${API_URL}/create.php`, {
       method: 'POST',
       body: new FormData(e.target)
     })
