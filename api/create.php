@@ -15,4 +15,4 @@ $data = [
 
 setData($id, $data);
 
-header("Location: question.php?id=$id");
+echo json_encode($data);

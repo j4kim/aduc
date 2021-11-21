@@ -1,5 +1,8 @@
 <?php
 
+header("Access-Control-Allow-Origin: *");
+header("Access-Control-Allow-Headers: *");
+
 function getData($id) {
   $content = @file_get_contents("database/$id.json");
   return json_decode($content);
