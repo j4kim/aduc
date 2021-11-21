@@ -1,17 +1,10 @@
 <script>
-	import { Router, Link, Route } from "svelte-routing"
+	import { Router, Route } from "svelte-routing"
+	import Home from "./views/Home.svelte"
+	import Question from "./views/Question.svelte"
 </script>
 
 <Router>
-	<Route path="/">
-		<h1>Hello</h1>
-		<Link to="/question">question</Link>
-	</Route>
-	<Route path="/question">
-		<h1>Question</h1>
-		<Link to="/">une-question.ch</Link>
-	</Route>
+	<Route path="/" component="{Home}" />
+	<Route path=":id" component="{Question}" />
 </Router>
-
-<style>
-</style>
