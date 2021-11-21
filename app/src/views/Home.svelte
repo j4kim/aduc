@@ -1,13 +1,10 @@
 <script>
-  import { API_URL } from '../env.js'
+  import { post } from '../tools.js'
 
   let question = '';
 
   function handleSubmit(e) {
-    fetch(`${API_URL}/create.php`, {
-      method: 'POST',
-      body: new FormData(e.target)
-    })
+    post('create', new FormData(e.target))
   }
 </script>
 
